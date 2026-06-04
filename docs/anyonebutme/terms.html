@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>서비스 이용약관 — 나만 아니면 돼 by 원키랩</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #FAFAF7;
+      --surface:   #FFFFFF;
+      --border:    #E8E4DC;
+      --accent:    #C0392B;
+      --accent2:   #E74C3C;
+      --text:      #1A1A1A;
+      --muted:     #6B6560;
+      --light:     #F0EDE6;
+      --number:    #C0392B;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 300;
+      line-height: 1.85;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--text);
+      color: #fff;
+      padding: 72px 0 56px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,.03) 40px,
+        rgba(255,255,255,.03) 41px
+      );
+    }
+    .header-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .app-badge {
+      display: inline-block;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      border: 1px solid var(--accent2);
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -.02em;
+      margin-bottom: 16px;
+    }
+    .header-meta {
+      font-size: 13px;
+      color: rgba(255,255,255,.45);
+      letter-spacing: .02em;
+    }
+    .header-meta span { color: rgba(255,255,255,.7); }
+
+    /* ── Layout ── */
+    .layout {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 32px 100px;
+    }
+
+    /* ── TOC ── */
+    .toc {
+      background: var(--light);
+      border-left: 3px solid var(--accent);
+      padding: 28px 32px;
+      margin: 48px 0 60px;
+    }
+    .toc-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .toc ol {
+      list-style: none;
+      columns: 2;
+      column-gap: 24px;
+    }
+    .toc ol li {
+      break-inside: avoid;
+      margin-bottom: 8px;
+    }
+    .toc ol li a {
+      font-size: 13.5px;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      transition: color .2s;
+    }
+    .toc ol li a:hover { color: var(--accent); }
+    .toc ol li a .toc-num {
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: 600;
+      min-width: 28px;
+    }
+
+    /* ── Sections ── */
+    .section {
+      padding: 52px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child { border-bottom: none; }
+
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .section-num {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: .08em;
+      padding-top: 6px;
+      min-width: 48px;
+    }
+    h2 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: clamp(18px, 2.5vw, 22px);
+      font-weight: 600;
+      letter-spacing: -.01em;
+      line-height: 1.35;
+    }
+
+    .content { padding-left: 68px; }
+
+    p {
+      font-size: 15px;
+      color: #333;
+      margin-bottom: 14px;
+      word-break: keep-all;
+    }
+
+    ul {
+      list-style: none;
+      margin: 8px 0 16px;
+    }
+    ul li {
+      font-size: 15px;
+      color: #333;
+      padding: 8px 0 8px 20px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      word-break: keep-all;
+    }
+    ul li:last-child { border-bottom: none; }
+    ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 18px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: .5;
+    }
+
+    h3 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--muted);
+      margin: 24px 0 10px;
+      letter-spacing: .02em;
+    }
+
+    .highlight-box {
+      background: #FEF9F9;
+      border: 1px solid #F5C6C6;
+      border-left: 3px solid var(--accent);
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: 14px;
+      color: #5A2020;
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,.4);
+      text-align: center;
+      padding: 40px 32px;
+      font-size: 12.5px;
+      letter-spacing: .03em;
+      line-height: 1.9;
+    }
+    footer strong { color: rgba(255,255,255,.75); }
+
+    /* ── Scroll top ── */
+    .scroll-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 40px;
+      height: 40px;
+      background: var(--text);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity .3s;
+      z-index: 99;
+    }
+    .scroll-top.visible { opacity: 1; }
+
+    @media (max-width: 600px) {
+      .toc ol { columns: 1; }
+      .content { padding-left: 0; }
+      .section-header { flex-direction: column; gap: 4px; }
+      .section-num { padding-top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="app-badge">나만 아니면 돼 · WonkeyLab</div>
+    <h1>서비스 이용약관</h1>
+    <p class="header-meta">
+      시행일: <span>2026년 6월 1일</span>&nbsp;&nbsp;·&nbsp;&nbsp;최종 수정: <span>2026년 6월 1일</span>
+    </p>
+  </div>
+</header>
+
+<div class="layout">
+
+  <!-- TOC -->
+  <nav class="toc" aria-label="목차">
+    <div class="toc-title">목차</div>
+    <ol>
+      <li><a href="#s1"><span class="toc-num">제1조</span>목적</a></li>
+      <li><a href="#s2"><span class="toc-num">제2조</span>정의</a></li>
+      <li><a href="#s3"><span class="toc-num">제3조</span>약관의 효력 및 변경</a></li>
+      <li><a href="#s4"><span class="toc-num">제4조</span>서비스의 내용</a></li>
+      <li><a href="#s5"><span class="toc-num">제5조</span>서비스 이용 및 계정</a></li>
+      <li><a href="#s6"><span class="toc-num">제6조</span>게임 이용 규칙</a></li>
+      <li><a href="#s7"><span class="toc-num">제7조</span>개인정보 보호</a></li>
+      <li><a href="#s8"><span class="toc-num">제8조</span>서비스 이용 제한</a></li>
+      <li><a href="#s9"><span class="toc-num">제9조</span>서비스 변경 및 중단</a></li>
+      <li><a href="#s10"><span class="toc-num">제10조</span>면책 조항</a></li>
+      <li><a href="#s11"><span class="toc-num">제11조</span>분쟁 해결 및 준거법</a></li>
+      <li><a href="#s12"><span class="toc-num">제12조</span>문의 및 고객지원</a></li>
+    </ol>
+  </nav>
+
+  <!-- 제1조 -->
+  <section class="section" id="s1">
+    <div class="section-header">
+      <span class="section-num">제1조</span>
+      <h2>목적</h2>
+    </div>
+    <div class="content">
+      <p>본 약관은 <strong>나만 아니면 돼</strong>(이하 "서비스" 또는 "앱")를 운영하는 <strong>원키랩(WonkeyLab)</strong>(이하 "회사")과 서비스를 이용하는 이용자(이하 "회원") 간의 권리, 의무 및 책임사항, 그 밖에 필요한 사항을 규정함을 목적으로 합니다.</p>
+    </div>
+  </section>
+
+  <!-- 제2조 -->
+  <section class="section" id="s2">
+    <div class="section-header">
+      <span class="section-num">제2조</span>
+      <h2>정의</h2>
+    </div>
+    <div class="content">
+      <p>본 약관에서 사용하는 용어의 정의는 다음과 같습니다.</p>
+      <ul>
+        <li><strong>"서비스"</strong>란 나만 아니면 돼 앱에서 제공하는 미니게임 기반 역할 결정 서비스 전반을 의미합니다.</li>
+        <li><strong>"회원"</strong>이란 본 약관에 동의하고 서비스를 이용하는 자를 의미합니다.</li>
+        <li><strong>"게임"</strong>이란 서비스 내에서 참가자 간 승패를 결정하기 위해 제공되는 미니게임 및 미션을 의미합니다.</li>
+        <li><strong>"방"</strong>이란 회원이 게임을 진행하기 위해 생성하거나 참여하는 게임 세션을 의미합니다.</li>
+        <li><strong>"게임 결과"</strong>란 서비스 내 게임을 통해 도출된 참가자 간 순위 또는 역할 배정 결과를 의미합니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제3조 -->
+  <section class="section" id="s3">
+    <div class="section-header">
+      <span class="section-num">제3조</span>
+      <h2>약관의 효력 및 변경</h2>
+    </div>
+    <div class="content">
+      <ul>
+        <li>본 약관은 서비스 내 공지 또는 토스 미니앱 페이지에 게시함으로써 효력이 발생합니다.</li>
+        <li>회사는 관련 법령을 위반하지 않는 범위에서 약관을 변경할 수 있으며, 변경 시 시행일 <strong>7일 전</strong> 앱 내 공지를 통해 고지합니다.</li>
+        <li>회원이 변경된 약관에 동의하지 않을 경우 서비스 이용을 중단할 수 있습니다.</li>
+        <li>변경 후에도 서비스를 계속 이용하면 변경된 약관에 동의한 것으로 간주합니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제4조 -->
+  <section class="section" id="s4">
+    <div class="section-header">
+      <span class="section-num">제4조</span>
+      <h2>서비스의 내용</h2>
+    </div>
+    <div class="content">
+      <p>나만 아니면 돼는 다음과 같은 기능을 제공합니다.</p>
+      <ul>
+        <li>미니게임을 통한 참가자 간 승패·역할 결정</li>
+        <li>방 생성 및 참여 기능 (링크 / 코드 공유)</li>
+        <li>게임 결과 기록 및 공유</li>
+        <li>다양한 게임 모드 및 미션 제공</li>
+      </ul>
+      <div class="highlight-box">
+        ⚠️ 본 서비스는 오락 및 친목 도모 목적의 비경쟁적 게임 서비스입니다. 실제 금전, 상품, 법적 권리의 이전을 목적으로 사용할 수 없으며, 그로 인한 분쟁에 대해 회사는 책임을 지지 않습니다.
+      </div>
+    </div>
+  </section>
+
+  <!-- 제5조 -->
+  <section class="section" id="s5">
+    <div class="section-header">
+      <span class="section-num">제5조</span>
+      <h2>서비스 이용 및 계정</h2>
+    </div>
+    <div class="content">
+      <p>본 서비스는 <strong>토스(비바리퍼블리카) 미니앱 플랫폼</strong>을 통해 제공됩니다. 회원의 계정 및 인증은 토스 계정을 기반으로 하며, 별도의 회원가입 절차 없이 토스 앱 내에서 서비스를 이용할 수 있습니다.</p>
+      <ul>
+        <li>서비스 이용을 위해 토스 앱의 로그인 상태가 유지되어야 합니다.</li>
+        <li>토스 계정 및 개인정보 관리는 토스 이용약관 및 개인정보처리방침에 따릅니다.</li>
+        <li>토스 플랫폼과 관련한 사항(결제, 인증, 계정 보안 등)에 대해서는 토스 이용약관이 우선 적용됩니다.</li>
+        <li>회원은 타인의 토스 계정을 이용하여 서비스에 접근할 수 없습니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제6조 -->
+  <section class="section" id="s6">
+    <div class="section-header">
+      <span class="section-num">제6조</span>
+      <h2>게임 이용 규칙</h2>
+    </div>
+    <div class="content">
+      <h3>① 공정한 이용</h3>
+      <ul>
+        <li>모든 게임은 공정한 방식으로 진행되어야 합니다.</li>
+        <li>버그·핵·매크로 등 비정상적인 방법으로 결과를 조작하는 행위를 금지합니다.</li>
+        <li>게임 결과에 불복하거나 타인에게 강요하는 행위를 금지합니다.</li>
+      </ul>
+
+      <h3>② 금지 행위</h3>
+      <ul>
+        <li>타인을 비하, 조롱, 혐오하는 닉네임 또는 채팅 사용</li>
+        <li>음란, 폭력, 불법 콘텐츠 공유</li>
+        <li>상업적 목적의 광고 또는 스팸 행위</li>
+        <li>서비스 시스템을 의도적으로 교란하거나 서버에 과부하를 주는 행위</li>
+        <li>타인의 개인정보를 무단 수집·이용하는 행위</li>
+        <li>관련 법령을 위반하는 일체의 행위</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제7조 -->
+  <section class="section" id="s7">
+    <div class="section-header">
+      <span class="section-num">제7조</span>
+      <h2>개인정보 보호</h2>
+    </div>
+    <div class="content">
+      <p>회사는 「개인정보보호법」 및 관련 법령에 따라 회원의 개인정보를 보호합니다. 자세한 사항은 별도의 <strong>개인정보처리방침</strong>에 따릅니다.</p>
+      <h3>수집하는 주요 정보</h3>
+      <ul>
+        <li>닉네임, 프로필 사진 (선택)</li>
+        <li>기기 식별 정보 — 서비스 제공 목적</li>
+        <li>게임 플레이 기록 — 서비스 개선 목적</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제8조 -->
+  <section class="section" id="s8">
+    <div class="section-header">
+      <span class="section-num">제8조</span>
+      <h2>서비스 이용 제한</h2>
+    </div>
+    <div class="content">
+      <p>회사는 회원이 다음 각 호에 해당하는 경우 사전 통보 없이 서비스 이용을 제한하거나 계정을 정지·삭제할 수 있습니다.</p>
+      <ul>
+        <li>본 약관의 금지 행위를 한 경우</li>
+        <li>타인의 신고가 다수 접수된 경우</li>
+        <li>불법·유해 정보를 유포한 경우</li>
+        <li>기타 회사가 서비스 운영에 현저히 부적합하다고 판단한 경우</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제9조 -->
+  <section class="section" id="s9">
+    <div class="section-header">
+      <span class="section-num">제9조</span>
+      <h2>서비스 변경 및 중단</h2>
+    </div>
+    <div class="content">
+      <ul>
+        <li>회사는 서비스의 내용, 기능, 운영 정책을 변경하거나 서비스를 중단할 수 있습니다.</li>
+        <li>서비스 중단 시 앱 내 공지를 통해 사전 고지하며, 불가피한 사유로 사전 고지가 어려운 경우 사후 고지할 수 있습니다.</li>
+        <li>회사는 서비스 변경·중단으로 인한 손해에 대해 고의 또는 중과실이 없는 한 책임을 지지 않습니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제10조 -->
+  <section class="section" id="s10">
+    <div class="section-header">
+      <span class="section-num">제10조</span>
+      <h2>면책 조항</h2>
+    </div>
+    <div class="content">
+      <ul>
+        <li>서비스는 참가자 간의 자발적인 합의를 기반으로 운영되며, 게임 결과로 인한 현실적 분쟁이나 피해에 대해 회사는 책임을 지지 않습니다.</li>
+        <li>회원 간의 분쟁, 게임 결과 불이행 등으로 발생하는 문제는 당사자 간 해결을 원칙으로 합니다.</li>
+        <li>천재지변, 서버 장애 등 불가항력적 사유로 인한 서비스 중단의 경우 회사는 책임을 지지 않습니다.</li>
+        <li>회원이 서비스를 이용하여 기대하는 효과를 얻지 못하였거나 서비스 자료에 대한 취사 선택으로 발생한 손해에 대해 회사는 책임을 지지 않습니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제11조 -->
+  <section class="section" id="s11">
+    <div class="section-header">
+      <span class="section-num">제11조</span>
+      <h2>분쟁 해결 및 준거법</h2>
+    </div>
+    <div class="content">
+      <ul>
+        <li>서비스 이용과 관련한 분쟁은 먼저 회사 고객센터를 통해 해결을 시도합니다.</li>
+        <li>분쟁이 해결되지 않을 경우, 관할 법원은 회사 소재지를 관할하는 법원으로 합니다.</li>
+        <li>본 약관은 대한민국 법령에 따라 해석·적용됩니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제12조 -->
+  <section class="section" id="s12">
+    <div class="section-header">
+      <span class="section-num">제12조</span>
+      <h2>문의 및 고객지원</h2>
+    </div>
+    <div class="content">
+      <p>서비스 이용 관련 문의 및 신고는 아래 채널을 통해 접수하실 수 있습니다.</p>
+      <ul>
+        <li>앱 내 고객센터 → 1:1 문의</li>
+        <li>이메일: <a href="mailto:support@namanani.com" style="color:var(--accent);text-decoration:none;">support@namanani.com</a></li>
+      </ul>
+    </div>
+  </section>
+
+</div><!-- /layout -->
+
+<footer>
+  <strong>원키랩 (WonkeyLab)</strong><br />
+  대표: 원성현&nbsp;&nbsp;·&nbsp;&nbsp;사업자등록번호: 303-29-16872<br />
+  본 약관은 2026년 6월 1일부터 적용됩니다.<br />
+  © 2026 WonkeyLab. All rights reserved.
+</footer>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
+
+<script>
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+</script>
+
+</body>
+</html>
