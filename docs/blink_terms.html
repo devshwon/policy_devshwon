@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>서비스 이용약관 — 찰나</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:      #F8F7F5;
+      --border:  #E0D9CE;
+      --accent:  #2A2A2A;
+      --accent2: #8A7560;
+      --text:    #1A1A1A;
+      --muted:   #7A7268;
+      --light:   #EFECE6;
+      --gold:    #B8975A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 300;
+      line-height: 1.9;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: #1A1A1A;
+      color: #fff;
+      padding: 64px 0 52px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* 순간 포착 느낌의 원형 장식 */
+    header::before {
+      content: '';
+      position: absolute;
+      right: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      border: 40px solid rgba(184,151,90,.06);
+      pointer-events: none;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 1px solid rgba(184,151,90,.15);
+      pointer-events: none;
+    }
+    .header-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+    .chip {
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.65);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      padding: 3px 11px;
+      border-radius: 99px;
+    }
+    .chip-gold {
+      color: var(--gold);
+      background: rgba(184,151,90,.1);
+      border-color: rgba(184,151,90,.3);
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 8vw, 72px);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -.02em;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .h1-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(14px, 2vw, 18px);
+      color: rgba(255,255,255,.38);
+      margin-bottom: 20px;
+      letter-spacing: .06em;
+    }
+    .header-meta {
+      font-size: 12px;
+      color: rgba(255,255,255,.35);
+      letter-spacing: .04em;
+    }
+    .header-meta span { color: rgba(255,255,255,.75); font-weight: 400; }
+
+    /* ── Layout ── */
+    .layout {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 32px 100px;
+    }
+
+    /* ── TOC ── */
+    .toc {
+      background: var(--light);
+      padding: 28px 32px;
+      margin: 48px 0 56px;
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--gold);
+    }
+    .toc-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 24px;
+    }
+    .toc-grid a {
+      font-size: 13px;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color .2s;
+    }
+    .toc-grid a:hover { color: var(--gold); }
+    .toc-grid a .n {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 30px;
+    }
+
+    /* ── Sections ── */
+    .section {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child { border-bottom: none; }
+
+    .sec-head {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 0 16px;
+      align-items: start;
+      margin-bottom: 22px;
+    }
+    .sec-num {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: var(--gold);
+      padding-top: 8px;
+      text-transform: uppercase;
+    }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 3.2vw, 28px);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -.01em;
+      color: var(--text);
+    }
+
+    .body { padding-left: 72px; }
+
+    p {
+      font-size: 14.5px;
+      color: #2E2A26;
+      margin-bottom: 12px;
+      word-break: keep-all;
+    }
+
+    ul { list-style: none; margin: 8px 0 14px; }
+    ul li {
+      font-size: 14.5px;
+      color: #2E2A26;
+      padding: 9px 0 9px 18px;
+      position: relative;
+      border-bottom: 1px dashed var(--border);
+      word-break: keep-all;
+      line-height: 1.75;
+    }
+    ul li:last-child { border-bottom: none; }
+    ul li::before {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: 18px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: .55;
+    }
+
+    h3 {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin: 22px 0 8px;
+    }
+
+    .callout {
+      background: #F2EDE4;
+      border-left: 3px solid var(--gold);
+      padding: 14px 18px;
+      margin: 14px 0;
+      font-size: 13.5px;
+      color: #3A3020;
+      line-height: 1.75;
+      word-break: keep-all;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #1A1A1A;
+      color: rgba(255,255,255,.3);
+      padding: 44px 32px;
+      font-size: 12px;
+      line-height: 2;
+      letter-spacing: .03em;
+    }
+    .footer-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    footer strong { color: rgba(255,255,255,.65); }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: rgba(255,255,255,.06);
+      line-height: 1;
+      margin-bottom: 6px;
+      letter-spacing: -.02em;
+    }
+
+    /* ── Scroll top ── */
+    .scroll-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 38px;
+      height: 38px;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity .3s, transform .2s;
+      z-index: 99;
+      box-shadow: 0 4px 12px rgba(184,151,90,.35);
+    }
+    .scroll-top.visible { opacity: 1; }
+    .scroll-top:hover { transform: translateY(-2px); }
+
+    @media (max-width: 580px) {
+      .toc-grid { grid-template-columns: 1fr; }
+      .sec-head { grid-template-columns: 1fr; }
+      .sec-num { padding-top: 0; margin-bottom: 4px; }
+      .body { padding-left: 0; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="chips">
+      <span class="chip chip-gold">찰나</span>
+      <span class="chip">토스 미니앱</span>
+      <span class="chip">WonkeyLab</span>
+    </div>
+    <h1>찰나</h1>
+    <p class="h1-sub">서비스 이용약관 · Terms of Service</p>
+    <p class="header-meta">
+      시행일: <span>2026년 6월 27일</span>&nbsp;&nbsp;·&nbsp;&nbsp;최종 수정: <span>2026년 6월 27일</span>
+    </p>
+  </div>
+</header>
+
+<div class="layout">
+
+  <nav class="toc" aria-label="목차">
+    <div class="toc-label">목차 · Index</div>
+    <div class="toc-grid">
+      <a href="#s1"><span class="n">제1조</span>목적</a>
+      <a href="#s2"><span class="n">제2조</span>정의</a>
+      <a href="#s3"><span class="n">제3조</span>약관의 효력 및 변경</a>
+      <a href="#s4"><span class="n">제4조</span>서비스의 내용</a>
+      <a href="#s5"><span class="n">제5조</span>서비스 이용 및 계정</a>
+      <a href="#s6"><span class="n">제6조</span>챌린지 이용 규칙</a>
+      <a href="#s7"><span class="n">제7조</span>개인정보 보호</a>
+      <a href="#s8"><span class="n">제8조</span>서비스 이용 제한</a>
+      <a href="#s9"><span class="n">제9조</span>서비스 변경 및 중단</a>
+      <a href="#s10"><span class="n">제10조</span>면책 조항</a>
+      <a href="#s11"><span class="n">제11조</span>분쟁 해결 및 준거법</a>
+      <a href="#s12"><span class="n">제12조</span>문의 및 고객지원</a>
+    </div>
+  </nav>
+
+  <!-- 제1조 -->
+  <section class="section" id="s1">
+    <div class="sec-head">
+      <span class="sec-num">제1조</span>
+      <h2>목적</h2>
+    </div>
+    <div class="body">
+      <p>본 약관은 <strong>찰나</strong>(이하 "서비스" 또는 "앱")를 운영하는 <strong>원키랩(WonkeyLab)</strong>(이하 "회사")과 서비스를 이용하는 이용자(이하 "회원") 간의 권리, 의무 및 책임사항, 그 밖에 필요한 사항을 규정함을 목적으로 합니다.</p>
+    </div>
+  </section>
+
+  <!-- 제2조 -->
+  <section class="section" id="s2">
+    <div class="sec-head">
+      <span class="sec-num">제2조</span>
+      <h2>정의</h2>
+    </div>
+    <div class="body">
+      <p>본 약관에서 사용하는 용어의 정의는 다음과 같습니다.</p>
+      <ul>
+        <li><strong>"서비스"</strong>란 찰나 앱에서 제공하는 타이밍·손발력 챌린지 및 관련 기능 전반을 의미합니다.</li>
+        <li><strong>"회원"</strong>이란 본 약관에 동의하고 서비스를 이용하는 자를 의미합니다.</li>
+        <li><strong>"챌린지"</strong>란 서비스 내에서 제공되는 타이밍 및 손발력 측정·경쟁 활동을 의미합니다.</li>
+        <li><strong>"챌린지 결과"</strong>란 회원이 챌린지를 수행하여 도출된 점수, 순위, 기록 등을 의미합니다.</li>
+        <li><strong>"방"</strong>이란 회원이 챌린지를 진행하기 위해 생성하거나 참여하는 세션을 의미합니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제3조 -->
+  <section class="section" id="s3">
+    <div class="sec-head">
+      <span class="sec-num">제3조</span>
+      <h2>약관의 효력 및 변경</h2>
+    </div>
+    <div class="body">
+      <ul>
+        <li>본 약관은 서비스 내 공지 또는 토스 미니앱 페이지에 게시함으로써 효력이 발생합니다.</li>
+        <li>회사는 관련 법령을 위반하지 않는 범위에서 약관을 변경할 수 있으며, 변경 시 시행일 <strong>7일 전</strong> 앱 내 공지를 통해 고지합니다.</li>
+        <li>회원이 변경된 약관에 동의하지 않을 경우 서비스 이용을 중단할 수 있습니다.</li>
+        <li>변경 후에도 서비스를 계속 이용하면 변경된 약관에 동의한 것으로 간주합니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제4조 -->
+  <section class="section" id="s4">
+    <div class="sec-head">
+      <span class="sec-num">제4조</span>
+      <h2>서비스의 내용</h2>
+    </div>
+    <div class="body">
+      <p>찰나는 순간적인 타이밍과 손발력을 겨루는 챌린지 서비스로, 다음과 같은 기능을 제공합니다.</p>
+      <ul>
+        <li>타이밍·손발력 측정 챌린지 제공</li>
+        <li>방 생성 및 참여 기능 (링크·코드 공유)</li>
+        <li>챌린지 결과 기록 및 비교</li>
+        <li>다양한 챌린지 모드 제공</li>
+      </ul>
+      <div class="callout">
+        ⚡ 찰나는 친목 및 오락 목적의 비경쟁적 챌린지 서비스입니다. 챌린지 결과를 근거로 한 실제 금전, 상품, 법적 권리의 이전을 목적으로 사용할 수 없으며, 이로 인해 발생하는 분쟁에 대해 회사는 책임을 지지 않습니다.
+      </div>
+    </div>
+  </section>
+
+  <!-- 제5조 -->
+  <section class="section" id="s5">
+    <div class="sec-head">
+      <span class="sec-num">제5조</span>
+      <h2>서비스 이용 및 계정</h2>
+    </div>
+    <div class="body">
+      <p>본 서비스는 <strong>토스(비바리퍼블리카) 미니앱 플랫폼</strong>을 통해 제공됩니다. 회원의 계정 및 인증은 토스 계정을 기반으로 하며, 별도의 회원가입 없이 토스 앱 내에서 서비스를 이용할 수 있습니다.</p>
+      <ul>
+        <li>서비스 이용을 위해 토스 앱의 로그인 상태가 유지되어야 합니다.</li>
+        <li>토스 계정 및 개인정보 관리는 토스 이용약관 및 개인정보처리방침에 따릅니다.</li>
+        <li>토스 플랫폼과 관련한 사항(인증, 계정 보안 등)에 대해서는 토스 이용약관이 우선 적용됩니다.</li>
+        <li>회원은 타인의 토스 계정을 이용하여 서비스에 접근할 수 없습니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제6조 -->
+  <section class="section" id="s6">
+    <div class="sec-head">
+      <span class="sec-num">제6조</span>
+      <h2>챌린지 이용 규칙</h2>
+    </div>
+    <div class="body">
+      <h3>① 공정한 참여</h3>
+      <ul>
+        <li>모든 챌린지는 공정한 방식으로 참여해야 합니다.</li>
+        <li>버그·자동화 도구·외부 장치 등 비정상적인 방법으로 결과를 조작하는 행위를 금지합니다.</li>
+        <li>챌린지 결과에 불복하거나 타인에게 결과 이행을 강요하는 행위를 금지합니다.</li>
+      </ul>
+      <h3>② 금지 행위</h3>
+      <ul>
+        <li>타인을 비하·조롱·혐오하는 닉네임 또는 언행 사용</li>
+        <li>서비스 시스템을 의도적으로 교란하거나 서버에 과부하를 주는 행위</li>
+        <li>타인의 개인정보를 무단으로 수집·이용하는 행위</li>
+        <li>상업적 목적의 광고 또는 스팸 행위</li>
+        <li>관련 법령을 위반하는 일체의 행위</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제7조 -->
+  <section class="section" id="s7">
+    <div class="sec-head">
+      <span class="sec-num">제7조</span>
+      <h2>개인정보 보호</h2>
+    </div>
+    <div class="body">
+      <p>회사는 「개인정보보호법」 및 관련 법령에 따라 회원의 개인정보를 보호합니다. 자세한 사항은 별도의 <strong>개인정보처리방침</strong>에 따릅니다.</p>
+      <h3>수집하는 주요 정보</h3>
+      <ul>
+        <li>닉네임, 프로필 정보 (선택)</li>
+        <li>챌린지 참여 기록 및 결과 — 서비스 제공 목적</li>
+        <li>서비스 이용 기록 — 서비스 개선 목적</li>
+        <li>기기 식별 정보 — 오류 분석 및 서비스 안정화 목적</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제8조 -->
+  <section class="section" id="s8">
+    <div class="sec-head">
+      <span class="sec-num">제8조</span>
+      <h2>서비스 이용 제한</h2>
+    </div>
+    <div class="body">
+      <p>회사는 회원이 다음 각 호에 해당하는 경우 사전 통보 없이 서비스 이용을 제한할 수 있습니다.</p>
+      <ul>
+        <li>본 약관의 금지 행위를 한 경우</li>
+        <li>비정상적인 방법으로 챌린지 결과를 조작한 경우</li>
+        <li>타인의 신고가 다수 접수된 경우</li>
+        <li>불법·유해 정보를 유포한 경우</li>
+        <li>기타 회사가 서비스 운영에 현저히 부적합하다고 판단한 경우</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제9조 -->
+  <section class="section" id="s9">
+    <div class="sec-head">
+      <span class="sec-num">제9조</span>
+      <h2>서비스 변경 및 중단</h2>
+    </div>
+    <div class="body">
+      <ul>
+        <li>회사는 서비스의 내용, 챌린지 모드, 기능 및 운영 정책을 변경하거나 서비스를 중단할 수 있습니다.</li>
+        <li>서비스 중단 시 앱 내 공지를 통해 사전 고지하며, 불가피한 사유로 사전 고지가 어려운 경우 사후 고지할 수 있습니다.</li>
+        <li>회사는 서비스 변경·중단으로 인한 손해에 대해 고의 또는 중과실이 없는 한 책임을 지지 않습니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제10조 -->
+  <section class="section" id="s10">
+    <div class="sec-head">
+      <span class="sec-num">제10조</span>
+      <h2>면책 조항</h2>
+    </div>
+    <div class="body">
+      <ul>
+        <li>서비스는 참가자 간의 자발적인 합의를 기반으로 운영되며, 챌린지 결과로 인한 현실적 분쟁이나 피해에 대해 회사는 책임을 지지 않습니다.</li>
+        <li>챌린지 결과의 불이행 등 회원 간 분쟁에 대해 회사는 개입하지 않으며 당사자 간 해결을 원칙으로 합니다.</li>
+        <li>네트워크 지연, 기기 성능 차이 등 외부 환경으로 인한 챌린지 결과의 불균형에 대해 회사는 책임을 지지 않습니다.</li>
+        <li>천재지변, 서버 장애, 토스 플랫폼 장애 등 불가항력적 사유로 인한 서비스 중단에 대해 회사는 책임을 지지 않습니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제11조 -->
+  <section class="section" id="s11">
+    <div class="sec-head">
+      <span class="sec-num">제11조</span>
+      <h2>분쟁 해결 및 준거법</h2>
+    </div>
+    <div class="body">
+      <ul>
+        <li>서비스 이용과 관련한 분쟁은 먼저 회사 고객센터를 통해 해결을 시도합니다.</li>
+        <li>분쟁이 해결되지 않을 경우, 관할 법원은 회사 소재지를 관할하는 법원으로 합니다.</li>
+        <li>본 약관은 대한민국 법령에 따라 해석·적용됩니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 제12조 -->
+  <section class="section" id="s12">
+    <div class="sec-head">
+      <span class="sec-num">제12조</span>
+      <h2>문의 및 고객지원</h2>
+    </div>
+    <div class="body">
+      <p>서비스 이용 관련 문의 및 신고는 아래 채널을 통해 접수하실 수 있습니다.</p>
+      <ul>
+        <li>이메일: <a href="mailto:devshwon@gmail.com" style="color:var(--gold);text-decoration:none;font-weight:500;">devshwon@gmail.com</a></li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">찰나</div>
+      <div>본 약관은 2026년 6월 27일부터 적용됩니다.</div>
+    </div>
+    <div style="text-align:right;">
+      <strong>원키랩 (WonkeyLab)</strong><br />
+      대표: 원성현&nbsp;&nbsp;·&nbsp;&nbsp;사업자등록번호: 303-29-16872<br />
+      © 2026 WonkeyLab. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
+
+<script>
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+</script>
+
+</body>
+</html>
